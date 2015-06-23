@@ -12,9 +12,6 @@ feature 'visitor views created questions', %Q{
   # - I must see the title of each question
   # - I must see questions listed in order, most recently posted first
   #
-  #
-  # let(:question) { FactoryGirl.create{:question} }
-  # let(:secondquestion) { FactoryGirl.create{:secondquestion} }
 
   scenario 'user sees the title for each question in order' do
     question = FactoryGirl.create(:question)

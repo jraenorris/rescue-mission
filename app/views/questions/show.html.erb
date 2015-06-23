@@ -5,4 +5,21 @@
 
   <div class="large-10 offset-2"><%= @question.description %></div>
 
+
+  <div class="large-12">
+    <%= form_for [@question, @answer] do |f| %>
+      <%= f.label "Submit an answer" %>
+      <%= f.text_area :answer %>
+
+      <%= f.submit "Submit your answer" %>
+    <%- end -%>
+  </div>
+
+  <div class="large-10 offset-2">
+    <ul>
+        <li><%= @all_answers %></li>
+    </ul>
+  </div>
+
+
 </div>

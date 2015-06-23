@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'user deletes a question - sign in or creation does not matter', %Q{
 As a user
@@ -14,9 +14,5 @@ So that I can delete duplicate questions
 # - All answers associated with the question must also be deleted
 
   scenario 'user goes to question page and clicks delete to erase it from list' do
-    question = FactoryGirl.create(:question)
-
-    
-
   end
 end
