@@ -3,9 +3,8 @@
     <h1><%= @question.title %></h1>
   </div>
 
-  <div class="large-10 offset-2"><%= @question.description %></div>
-
-
+  <div class="large-10 offset-2" id='description'><%= @question.description %></div>
+  <br>
   <div class="large-12">
     <%= form_for [@question, @answer] do |f| %>
       <%= f.label "Submit an answer" %>
@@ -13,11 +12,19 @@
 
       <%= f.submit "Submit your answer" %>
     <%- end -%>
+    <div><%= button_to 'Edit Question', edit_question_path(@question), method: :get %></div>
+
+    <%= button_to "Delete Question", @question, method: :delete, data:
+    {confirm: "Are you sure you want to delete this question?"}%>
   </div>
 
   <div class="large-10 offset-2">
     <ul>
-        <li><%= @all_answers %></li>
+      <% if !@all_answers.nil? %>
+        <% @all_answers.each do |obj| %>
+          <li><%= obj.answer %></li>
+        <% end %>
+      <% end %>
     </ul>
   </div>
 

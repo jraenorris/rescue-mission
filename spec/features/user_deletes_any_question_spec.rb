@@ -13,6 +13,15 @@ So that I can delete duplicate questions
 # - I must be able delete a question from the question details page
 # - All answers associated with the question must also be deleted
 
+  let(:question) {FactoryGirl.create(:question)}
+
   scenario 'user goes to question page and clicks delete to erase it from list' do
+    visit edit_question_path(question.id)
+
+    click_button 'Delete Question'
+
+    current_path.should == questions_path
+    expect(page).to_not have_content(question.title)
+
   end
 end

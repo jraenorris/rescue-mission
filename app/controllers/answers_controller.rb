@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
   def index
     @question = Question.find(params[:question_id])
-    @answers = @question.answers
+    @answers = @question.answers.desc
   end
 
   def new
@@ -15,21 +15,20 @@ class AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
     @answer.question = @question
 
-    if @answer.save
+    if @answer.valid?
+      @answer.save
       flash[:notice] = 'Your answer was successfully submitted!'
-      # redirect_to "/questions/#{@answer.question_id}"
-      redirect_to question_path(@question)
+      redirect_to "/questions/#{@answer.question_id}"
     else
-      render :new
+      if @answer.errors.present?
+        @answer.errors.full_messages.each do |error|
+          flash[:notice] = "#{error}"
+        end
+      end
+      render 'questions/show'
     end
   end
-
-  def show
-    @answer = Answer.find(params[:id])
-    @question = @answer.question
-    @all_answers = Answer.where(question_id: params[:question_id]).collect {|obj| obj.answer}
-  end
-
+  
   protected
   def answer_params
     params.require(:answer).permit(:answer, :question_id, :user_id)
