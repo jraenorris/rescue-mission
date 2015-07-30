@@ -8,19 +8,18 @@
 <body>
 
   <nav class="top-bar">
-    <ul class="title-area">
-      <li class="name">
-        <h1><a href="/">RescueMission</a></h1>
-      </li>
-    </ul>
-
-    <ul class="title-area">
-      <li class="name">
-        <h1><%= link_to "Add a Question", new_question_path %></h1>
-      </li>
-    </ul>
-
     <section class="top-bar-section">
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="/">View all Questions</a></h1>
+        </li>
+      </ul>
+      <ul class="title-area">
+        <li class="name">
+          <h1><%= link_to "Add a Question", new_question_path %></h1>
+        </li>
+      </ul>
+
       <ul class="right">
         <%- if current_user -%>
           <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
